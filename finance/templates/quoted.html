@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Symbol</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ price }}</td>
+                    <td>{{ stock.symbol }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

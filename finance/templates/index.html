@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+    <div>
+        <p class="h2">Balace: {{ table[0].cash | usd }}</p><br>
+        <p class="h2">Grand Total: {{ (table[0].cash + total[0].total) | usd}}</p>
+    </div>
+    {% if check %}
+    <div class="section">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Share(s)</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total Value</th>
+                    <th scope="col">Buy/Sell</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for row in table %}
+                    <tr>
+                        <td>{{ row.stock }}</td>
+                        <td>{{ row.shares }}</td>
+                        <td>{{ row.stock_price | usd }}</td>
+                        <td>{{ row.total_value | usd }}</td>
+                        <td>
+                            <form method="post">
+                                <div class="mb-1">
+                                    <div class="mb-2">
+                                        <input autocomplete="off" id="symbol" name="symbol" type="hidden" value="{{ row.stock }}">
+                                        <input autocomplete="off" class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="Shares" type="number" style="width:5%;">
+                                    </div>
+                                    <div></div>
+                                        <button class="btn btn-primary " type="submit" formaction="/buy">Buy</button>
+                                        <button class="btn btn-primary " type="submit" formaction="/sell">Sell</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
